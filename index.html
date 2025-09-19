@@ -1,211 +1,224 @@
+<!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="utf-8" />
-  <meta content="width=device-width, initial-scale=1" name="viewport" />
-  <title>H&P Printer Support</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HP Printer Support</title>
   <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
-  <style>
-    body { font-family: 'Inter', sans-serif; }
-    .fade-in { animation: fadeIn 1s ease-in-out; }
-    .slide-up { animation: slideUp 1s ease-in-out; }
-    .pulse { animation: pulse 2s infinite; }
-    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-    @keyframes slideUp { from { transform: translateY(20px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
-    @keyframes pulse { 0%,100% { transform: scale(1);} 50% { transform: scale(1.1);} }
-  </style>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
 </head>
 
-<body class="bg-white text-gray-900">
-  <!-- Top bar -->
-  <div class="bg-gradient-to-r from-emerald-700 to-teal-500 text-white text-xs md:text-sm font-semibold px-4 py-4 shadow-md">
-    <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-center gap-2 md:gap-0">
-      <p class="text-center md:text-left flex items-center mx-2 gap-2 font-bold">
-        <span class="hidden sm:inline">📞</span> Need immediate assistance? Call our H&P Printer Support Team now!
-      </p>
-      <a onclick="callNow()"
-        class="bg-emerald-800 hover:bg-emerald-900 transition-all duration-300 rounded px-5 py-2 flex items-center text-white text-xs md:text-sm font-semibold shadow-md hover:shadow-lg transform hover:scale-105">
-        <i class="fas fa-phone-alt mr-2"></i> Call +1-877-868-1718
-      </a>
-    </div>
-  </div>
+<body class="bg-white text-gray-900 font-sans">
 
-  <!-- Header -->
-  <header class="border-b border-emerald-600 bg-white sticky top-0 z-50 shadow-md">
-    <nav class="max-w-7xl mx-auto flex items-center justify-between px-4 py-2">
-      <!-- Logo -->
-      <div class="flex items-center space-x-1">
-        <span class="font-extrabold text-emerald-700 text-lg md:text-xl select-none">H&P</span>
-        <span class="text-gray-500 text-sm md:text-base select-none">Support</span>
+  <!-- Top Navbar -->
+  <header class="border-b">
+    <div class="max-w-7xl mx-auto flex justify-between items-center py-3 px-4">
+      <!-- Left: Logo -->
+      <div class="flex items-center space-x-3">
+        <img src="https://storage.googleapis.com/a1aa/image/d5c27842-5f28-4f1b-0df9-1ad19c57b756.jpg" alt="HP Logo"
+          class="w-10">
+  
       </div>
 
-      <!-- Desktop Menu -->
-      <ul class="hidden md:flex space-x-6 text-sm font-medium text-gray-700">
-        <li><a href="#" class="text-emerald-700 border-b-2 border-emerald-700 pb-1">Home</a></li>
-        <li><a href="#" class="hover:text-emerald-600 transition">Office</a></li>
-        <li><a href="#" class="hover:text-emerald-600 transition">H&P Printer 365</a></li>
-      </ul>
-
-      <!-- Right Buttons -->
-      <div class="hidden md:flex items-center justify-center space-x-5">
-        <form class="relative hidden sm:block" role="search">
-          <input type="search" placeholder="Search..."
-            class="border border-gray-300 rounded-full px-4 pr-10 py-2 mt-4 text-sm shadow-sm focus:outline-none focus:ring-2 focus:ring-emerald-600 focus:border-emerald-600 transition w-42 md:w-56" />
-          <button type="submit"
-            class="absolute right-3 top-9 -translate-y-1/2 text-gray-400 hover:text-emerald-600 transition">
+      <!-- Right: Search + Call + Toggle -->
+      <div class="flex items-center space-x-4">
+        <!-- Search (desktop only) -->
+        <form class="relative hidden sm:block">
+          <input type="text" placeholder="Search HP Support"
+            class="border rounded-full px-3 py-1 text-sm focus:ring-2 focus:ring-blue-600">
+          <button type="submit" class="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500">
             <i class="fas fa-search"></i>
           </button>
         </form>
-        <a href="#"
-          class="text-xs font-semibold text-emerald-700 border border-emerald-700 rounded-full px-4 py-2 hover:bg-emerald-700 hover:text-white transition shadow-sm">
-          Sign In
-        </a>
-        <a onclick="callNow()"
-          class="flex items-center space-x-2 bg-emerald-600 text-white font-semibold text-xs rounded-full px-4 py-2 shadow-md hover:bg-emerald-500 transition transform hover:scale-105">
-          <i class="fas fa-phone-alt animate-pulse text-white text-sm"></i>
-          <span>Call Now</span>
-        </a>
-      </div>
-      <button id="menu-btn" class="md:hidden text-gray-700 text-2xl focus:outline-none">
-        <i class="fas fa-bars"></i>
-      </button>
-    </nav>
 
-    <!-- Mobile Menu -->
-    <div id="mobile-menu" class="hidden md:hidden bg-white shadow-md">
-      <ul class="flex flex-col space-y-4 py-4 px-6 text-gray-700 text-sm font-medium">
-        <li><a href="#" class="block hover:text-emerald-600 transition">Home</a></li>
-        <li><a href="#" class="block hover:text-emerald-600 transition">Office</a></li>
-        <li><a href="#" class="block hover:text-emerald-600 transition">H&P Printer 365</a></li>
-        <li><a href="#" class="block hover:text-emerald-600 transition">Sign In</a></li>
-        <li><a onclick="callNow()" class="block font-bold text-emerald-700 hover:text-emerald-600"><i class="fas fa-phone-alt mr-1"></i> Call Now</a></li>
+        <!-- Call button -->
+        <a onclick="callNow()"
+          class="hidden md:inline-block border px-4 py-1 cursor-pointer text-md font-semibold rounded bg-blue-600 text-white hover:bg-blue-500">+1-877-868-1718</a>
+
+        <!-- Mobile Menu Button -->
+        <button id="menu-btn" class="md:hidden text-gray-700 text-2xl focus:outline-none">
+          <i class="fas fa-bars"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Dropdown Menu -->
+    <div id="mobile-menu" class="hidden md:hidden bg-gray-50 border-t">
+      <ul class="flex flex-col space-y-3 py-4 px-6 text-gray-700 text-sm font-medium">
+          
+        <li class="border-t pt-3"><a onclick="callNow()" class="block font-semibold text-blue-600"><i
+              class="fas fa-phone-alt mr-1 rotate-90"></i> +1-877-868-1718</a></li>
+
       </ul>
     </div>
   </header>
 
+
+
+
+ <!-- Multi Support Call Section -->
+<section class="relative max-w-7xl mx-auto px-4 py-16 text-center text-white rounded-lg overflow-hidden mt-5">
+
+  <!-- Background Image -->
+  <div class="absolute inset-0 bg-[url('https://www.livemint.com/lm-img/img/2025/07/07/600x338/compact_size_printers_1751894056573_1751894066879.png')] bg-cover bg-center"></div>
+
+  <!-- Dark Overlay -->
+  <div class="absolute inset-0 bg-black/50"></div>
+
+  <!-- Content -->
+  <div class="relative z-10">
+    <h2 class="text-2xl md:text-3xl font-bold mb-2">Get Instant HP Printer Support</h2>
+    <p class="mb-4 text-gray-200">No matter what issue you face, our experts are just one call away.</p>
+    <a onclick="callNow()"
+      class="inline-block mt-4 px-6 py-3 bg-blue-600 text-white font-semibold rounded-full shadow hover:bg-blue-700 transition">
+      📞 Call Now: +1-877-868-1718
+    </a>
+  </div>
+</section>
+
+
+
+
   <!-- Hero Section -->
-  <section class="bg-gradient-to-r from-teal-900 to-emerald-700 text-white relative overflow-hidden">
-    <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between px-4 md:px-8 py-10 md:py-20 gap-8 md:gap-16">
-      <!-- Left Content -->
-      <div class="max-w-xl text-center md:text-left space-y-5">
-        <img src="https://storage.googleapis.com/a1aa/image/d5c27842-5f28-4f1b-0df9-1ad19c57b756.jpg" alt="HP Logo"
-          class="rounded-full border-2 border-emerald-300 shadow mx-auto md:mx-0 w-20 sm:w-24 md:w-28">
-        <h1 class="font-extrabold text-2xl sm:text-3xl md:text-4xl leading-snug text-emerald-200">
-          H&P Printer Support Center
-        </h1>
-        <p class="text-sm sm:text-base text-gray-100">
-          Get help with all your H&P Printer products and services.
-          Find solutions, contact support, and connect with our community.
-        </p>
-        <div class="flex flex-col sm:flex-row gap-4 justify-center md:justify-start pt-2">
-          <a onclick="callNow()"
-            class="bg-emerald-600 text-white text-xs sm:text-sm font-semibold rounded px-6 py-3 flex items-center justify-center hover:bg-emerald-500 transition transform hover:scale-105 shadow-lg">
-            <i class="fas fa-phone-alt mr-2"></i> Call Support: +1-877-868-1718
-          </a>
-          <button type="button"
-            class="border border-white text-white text-xs sm:text-sm font-semibold rounded px-6 py-3 hover:bg-white hover:text-emerald-900 transition transform hover:scale-105">
-            Self-Help Resources
-          </button>
-        </div>
-      </div>
-      <!-- Right Image -->
-      <div class="w-full md:w-[45%] flex justify-center md:justify-end">
-        <img src="https://storage.googleapis.com/a1aa/image/84f28150-2016-4509-2573-2b78bed9b2ad.jpg"
-          alt="Printer Support"
-          class="rounded-xl shadow-2xl w-full max-w-sm md:max-w-md lg:max-w-lg object-cover hover:scale-105 transition duration-500" />
-      </div>
-    </div>
-  </section>
+  <section class="max-w-7xl mx-auto px-4 py-8">
+    <h1 class="text-2xl font-semibold mb-6">HP Printer Support</h1>
 
-  <!-- Contact Options -->
-  <section class="max-w-7xl mx-auto px-4 py-16">
-    <h2 class="text-center text-gray-900 font-bold text-xl mb-10">Contact Options</h2>
-    <div class="grid grid-cols-1 sm:grid-cols-3 gap-8">
-      <!-- Call -->
-      <div class="bg-white rounded-xl shadow-lg p-6 flex flex-col items-center text-center hover:shadow-2xl transform hover:scale-105 transition duration-300">
-        <i class="fas fa-phone-alt text-emerald-600 text-3xl mb-3"></i>
-        <h3 class="font-semibold text-gray-900 text-sm mb-2">Call Us</h3>
-        <p class="text-xs text-gray-500 mb-4">Our customer service team is available to help you 24/7.</p>
+    <!-- Quick Actions -->
+    <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-8">
+      <a href="#" class="flex flex-col items-center justify-center border rounded-lg p-4 hover:shadow">
+        <i class="fas fa-download text-blue-600 text-2xl mb-2"></i>
+        <span class="text-sm">Download drivers</span>
+      </a>
+      <a href="#" class="flex flex-col items-center justify-center border rounded-lg p-4 hover:shadow">
+        <i class="fas fa-shield-alt text-blue-600 text-2xl mb-2"></i>
+        <span class="text-sm">Check warranty status</span>
+      </a>
+      <a href="#" class="flex flex-col items-center justify-center border rounded-lg p-4 hover:shadow">
+        <i class="fas fa-headset text-blue-600 text-2xl mb-2"></i>
+        <span class="text-sm">Contact us</span>
+      </a>
+      <a href="#" class="flex flex-col items-center justify-center border rounded-lg p-4 hover:shadow">
+        <i class="fas fa-robot text-blue-600 text-2xl mb-2"></i>
+        <span class="text-sm">Ask our Virtual Assistant</span>
+      </a>
+    </div>
+
+
+    <!-- Multi Support Call Section -->
+
+      <!-- Highlighted Mid Banner -->
+      <div class="bg-gradient-to-r from-blue-600 to-blue-700 text-white text-center py-8 rounded-lg shadow-lg mb-10">
+        <h3 class="text-xl font-bold mb-2">Need Urgent Assistance?</h3>
+        <p class="text-blue-100 mb-4">Call our 24/7 support line and connect with an HP specialist immediately.</p>
         <a onclick="callNow()"
-          class="bg-emerald-600 text-white text-xs font-semibold rounded px-5 py-2 hover:bg-emerald-700 transition">+1-877-868-1718</a>
+          class="inline-block px-8 py-3 bg-white text-blue-700 font-semibold rounded-full shadow hover:bg-gray-100 transition">
+          📞 Call Now: +1-877-868-1718
+        </a>
       </div>
-      <!-- Email -->
-      <div class="bg-white rounded-xl shadow-lg p-6 flex flex-col items-center text-center hover:shadow-2xl transform hover:scale-105 transition duration-300">
-        <i class="far fa-envelope text-emerald-600 text-3xl mb-3"></i>
-        <h3 class="font-semibold text-gray-900 text-sm mb-2">Email Us</h3>
-        <p class="text-xs text-gray-500 mb-4">Give us a call and we'll get back to you within 1 minute.</p>
-        <button class="bg-emerald-600 text-white text-xs font-semibold rounded px-5 py-2 hover:bg-emerald-700 transition">Contact Support</button>
-      </div>
-      <!-- Visit -->
-      <div class="bg-white rounded-xl shadow-lg p-6 flex flex-col items-center text-center hover:shadow-2xl transform hover:scale-105 transition duration-300">
-        <i class="fas fa-map-marker-alt text-emerald-600 text-3xl mb-3"></i>
-        <h3 class="font-semibold text-gray-900 text-sm mb-2">Visit Us</h3>
-        <p class="text-xs text-gray-500 mb-4">Find one of our locations near you for in-person assistance.</p>
-        <button class="bg-emerald-600 text-white text-xs font-semibold rounded px-5 py-2 hover:bg-emerald-700 transition">Find Locations</button>
+
+
+    <!-- Setup Printer Section -->
+    <div class="grid md:grid-cols-2 gap-8 items-center mb-10">
+      <img
+        src="https://store.hp.com/app/assets/images/uploads/prod/what-is-the-best-all-in-one-printer-for-home-use-hero1532372411856.jpg"
+        alt="Printer setup" class="rounded shadow">
+      <div class="bg-gray-100 h-full p-3 mb-3">
+        <h2 class="text-lg font-semibold mb-2">How to setup your printer</h2>
+        <p class="text-sm text-gray-600 mb-3">Click Printer Setup for step by step guidance on how to setup, configure
+          and register your printer.</p>
+        <a onclick="callNow()" class="px-4 py-2 bg-blue-600 text-white rounded text-sm hover:bg-blue-700">Printer Setup</a>
       </div>
     </div>
+
+    <!-- Troubleshooting Section -->
+    <div class="grid md:grid-cols-3 gap-6 mb-12">
+      <div class="border rounded-lg p-6 hover:shadow">
+        <h3 class="text-blue-600 font-semibold mb-2">Windows 11</h3>
+        <p class="text-sm text-gray-600 mb-3">Scan / Print stopped working after upgrading to Windows 11?</p>
+        <a onclick="callNow()" class="px-4 py-2 bg-blue-600 text-white rounded text-sm hover:bg-blue-700">Fix Scan/Print</a>
+      </div>
+      <div class="border rounded-lg p-6 hover:shadow">
+        <h3 class="font-semibold mb-2">How to print, scan and fax</h3>
+        <p class="text-sm text-gray-600 mb-3">Instructions on how to print, scan and fax with your HP Printer.</p>
+        <a onclick="callNow()" class="px-4 py-2 bg-blue-600 text-white rounded text-sm hover:bg-blue-700">Print Scan Fax</a>
+      </div>
+      <div class="border rounded-lg p-6 hover:shadow">
+        <h3 class="font-semibold mb-2">Printer offline or job stuck</h3>
+        <p class="text-sm text-gray-600 mb-3">Use this tool to diagnose and fix printer offline or queue issues.</p>
+        <a onclick="callNow()" class="px-4 py-2 bg-blue-600 text-white rounded text-sm hover:bg-blue-700">Get HP Smart</a>
+      </div>
+    </div>
+
+    <!-- Call Now Button (Below Troubleshooting) -->
+    <div class="text-center mb-12">
+      <a onclick="callNow()"
+        class="inline-flex items-center px-8 py-3 bg-green-600 text-white font-semibold text-lg rounded-full shadow hover:bg-green-700 transition">
+        <i class="fas fa-phone-alt mr-2 rotate-90"></i> Call Now: +1-877-868-1718
+      </a>
+      <p class="text-xs text-gray-500 mt-2">Available 24/7 • Instant HP Printer Support</p>
+    </div>
+
+    <!-- Identify Printer -->
+    <div class="bg-gray-50 border rounded-lg p-6 mb-12">
+      <h3 class="font-semibold mb-3">Identify your printer for manuals and product information</h3>
+      <form class="flex space-x-3">
+        <input type="text" placeholder="Enter serial number, product number or product name"
+          class="flex-grow border rounded px-3 py-2 text-sm">
+        <button class="px-4 py-2 bg-blue-600 text-white text-sm rounded hover:bg-blue-700">Submit</button>
+      </form>
+      <p class="text-xs text-gray-500 mt-3">Or, let HP detect your product automatically.</p>
+    </div>
+
+
+
+    <!-- Diagnostic Tools Banner -->
+    <div
+      class="bg-blue-50 border rounded-lg flex flex-col md:flex-row items-center md:justify-between p-6 space-y-4 md:space-y-0 md:space-x-6">
+      <!-- Left Text -->
+      <div class="text-center md:text-left">
+        <h3 class="font-semibold text-lg">Issue with your HP printer?</h3>
+        <p class="text-sm text-gray-600">Use our diagnostic tools for help with common printer issues.</p>
+      </div>
+
+      <!-- Call Now Button -->
+      <a onclick="callNow()"
+        class="inline-flex items-center justify-center px-6 py-3 bg-green-600 text-white font-semibold text-base rounded-full shadow hover:bg-green-700 transition w-full sm:w-auto">
+        <i class="fas fa-phone-alt mr-2 rotate-90"></i> Call Now: +1-877-868-1718
+      </a>
+    </div>
+
   </section>
 
-  <!-- Floating Call Button -->
-  <a onclick="callNow()"
-    class="fixed bottom-6 right-6 bg-emerald-600 hover:bg-emerald-700 text-white w-14 h-14 rounded-full flex items-center justify-center shadow-xl transition-colors duration-300 pulse">
-    <i class="fas fa-phone-alt text-lg"></i>
-  </a>
+<!-- Footer Disclaimer -->
+<footer class="bg-black text-gray-400 text-xs">
+  <div class="max-w-7xl mx-auto px-4 py-8 text-center space-y-4">
+    <h4 class="text-white font-semibold text-sm">Disclaimer</h4>
+    <p class="max-w-3xl mx-auto leading-relaxed">
+      We are an independent third-party service provider for HP printer support. 
+      HP, the HP logo, and all related product names are trademarks of HP Inc. 
+      We are not directly associated with HP. Services provided may also be 
+      available for free on the official HP website.
+    </p>
+    <p>©2025 All Rights Reserved.</p>
+  </div>
+</footer>
 
-  <!-- Footer -->
-  <footer class="bg-teal-900 text-gray-200 text-xs mt-12">
-    <div class="max-w-7xl mx-auto px-4 py-12 grid grid-cols-1 sm:grid-cols-4 gap-8 border-b border-emerald-800">
-      <div>
-        <h4 class="font-semibold text-white mb-3">Products</h4>
-        <ul class="space-y-1">
-          <li class="hover:text-white cursor-pointer">H&P Printer</li>
-          <li class="hover:text-white cursor-pointer">Surface</li>
-        </ul>
-      </div>
-      <div>
-        <h4 class="font-semibold text-white mb-3">Support</h4>
-        <ul class="space-y-1">
-          <li class="hover:text-white cursor-pointer">Office Support</li>
-          <li class="hover:text-white cursor-pointer">H&P Printer 365 Support</li>
-        </ul>
-      </div>
-      <div>
-        <h4 class="font-semibold text-white mb-3">Resources</h4>
-        <ul class="space-y-1">
-          <li class="hover:text-white cursor-pointer">Support Community</li>
-          <li class="hover:text-white cursor-pointer">Support for Business</li>
-        </ul>
-      </div>
-      <div>
-        <h4 class="font-semibold text-white mb-3">Company</h4>
-        <ul class="space-y-1">
-          <li class="hover:text-white cursor-pointer">About H&P Printer</li>
-          <li class="hover:text-white cursor-pointer">Careers</li>
-        </ul>
-      </div>
-    </div>
-    <div class="max-w-7xl mx-auto px-4 py-4 flex flex-col sm:flex-row justify-between items-center text-gray-300">
-      <p>© 2024 H&P Printer Corporation. All rights reserved.</p>
-      <nav class="flex space-x-6 mt-2 sm:mt-0">
-        <a href="#" class="hover:text-white transition">Privacy</a>
-        <a href="#" class="hover:text-white transition">Terms of Use</a>
-        <a href="#" class="hover:text-white transition">Trademarks</a>
-        <a href="#" class="hover:text-white transition">Contact Us</a>
-      </nav>
-    </div>
-  </footer>
 
-<script>
-  const menuBtn = document.getElementById("menu-btn");
-  const mobileMenu = document.getElementById("mobile-menu");
-  menuBtn.addEventListener("click", () => {
-    mobileMenu.classList.toggle("hidden");
-    menuBtn.innerHTML = mobileMenu.classList.contains("hidden")
-      ? '<i class="fas fa-bars"></i>'
-      : '<i class="fas fa-times"></i>';
-  });
-  function callNow() { window.location.href = 'tel:+1-877-868-1718'; }
-</script>
+  <script>
+
+
+    const menuBtn = document.getElementById("menu-btn");
+    const mobileMenu = document.getElementById("mobile-menu");
+
+    menuBtn.addEventListener("click", () => {
+      mobileMenu.classList.toggle("hidden");
+      menuBtn.innerHTML = mobileMenu.classList.contains("hidden")
+        ? '<i class="fas fa-bars"></i>'
+        : '<i class="fas fa-times"></i>';
+    });
+    function callNow() { window.location.href = 'tel:+1-877-868-1718'; }
+  </script>
 </body>
+
 </html>
